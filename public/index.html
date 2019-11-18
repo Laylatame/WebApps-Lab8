@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Blog Posts</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1> Blogs </h1>
+        <div class="main">
+            <div class="blogPosts">
+            </div>
+            <div class="modify">
+                <h2>Modify Blogs</h2>
+                <h3>Post New Blog</h3>
+                <fieldset class="newBlog">
+                    <label for="titlePost" class="fielditem">Title </label>
+                    <input type="text" id="titlePost" class="fielditem"/>
+                    <label for="authorPost" class="fielditem">Author </label>
+                    <input type="text" id="authorPost" class="fielditem"/>
+                    <label for="contentPost" class="fielditem">Content </label>
+                    <textarea name="text" id="contentPost" class="content" rows="20" wrap="soft"></textarea>
+                    <button id="postBlog">Post Blog</button>
+                    <h5 class="errorPost"></h5>
+                </fieldset>
+                <h3>Delete Blog</h3>
+                <fieldset class="delete">
+                    <label for="idDelete" class="fielditem">ID </label>
+                    <input type="text" id="idDelete" class="fielditem"/>
+                    <button id="deleteBlog">Delete</button>
+                    <h5 class="errorDelete"></h5>
+                </fieldset>
+                <h3>Update Existing Blog</h3>
+                <fieldset class="update">
+                    <label for="idUpdate" class="fielditem">ID </label>
+                    <input type="text" id="idUpdate" class="fielditem"/>
+                    <label for="titleUpdate" class="fielditem">Title </label>
+                    <input type="text" id="titleUpdate" class="fielditem"/>
+                    <label for="authorUpdate" class="fielditem">Author </label>
+                    <input type="text" id="authorUpdate" class="fielditem"/>
+                    <label for="publishDateUpdate" class="fielditem">Date </label>
+                    <input type="Date" id="publishDateUpdate" class="fielditem"/>
+                    <label for="contentUpdate" class="fielditem">Content </label>
+                    <textarea name="text" id="contentUpdate" class="content" rows="20" wrap="soft"></textarea>
+                    <button id="update">Update</button>
+                    <h5 class="errorUpdate"></h5>
+                </fieldset>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="js/script.js"></script>
+    </body>
+</html>
