@@ -1,5 +1,7 @@
 let mongoose = require('mongoose');
 
+mongoose.Promise = global.Promise;
+
 var blogSchema = mongoose.Schema({
     id: { 
         type: String, 
@@ -50,8 +52,8 @@ let BlogPosts = {
                 throw Error(err);
             });
     },
-    post : function(newPost) {
-        return blog.create(newPost)
+    post : function(nPost) {
+        return blog.create(nPost)
             .then(post => {
                 return post;
             })
@@ -60,37 +62,27 @@ let BlogPosts = {
             });
     },
     delete : function(id) {
-        return blog.getById(id)
+        return blog.remove({id: id})
             .then(post => {
-                if (post) {
-                    return blog.findOneAndDelete({id : id})
-                        .then(deletedPost => {
-                            return deletedPost;
-                        })
-                        .catch(err => {
-                            throw Error(err);
-                        });
-                } else {
-                    throw Error("404 ID was not found");
-                }
+                return post;
             })
-            .catch(err => {
+            .catch (err => {
                 throw Error(err);
             });
     },
-    put : function(updatedPost) {
-        return BlogPosts.getById(updatedPost.id)
+    put : function(updPost) {
+        return BlogPosts.getById(updPost.id)
             .then(post => {
                 if (post) {
-                    return blog.findOneAndUpdate({id : post.id}, {$set : updatedPost}, {new : true})
-                        .then(newPost => {
-                            return newPost;
+                    return blog.findOneAndUpdate({id : post.id}, {$set : updPost}, {new : true})
+                        .then(nPost => {
+                            return nPost;
                         })
                         .catch(err => {
                             throw Error(err);
                         });
                 } else {
-                    throw Error("404 Id not found");
+                    throw Error("404. ID not found.");
                 }
             })
             .catch(err => {

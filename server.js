@@ -73,14 +73,12 @@ app.get("/api/blog-post", (req, res) => {
     }
 
     BlogPosts.getByAuthor(author).then(
-        postsAuthor => {
-            if(postsAuthor.length == 0){
+        posts => {
+            if(posts.length == 0){
                 return res.status(404).json({message: "Author not found", status: 404});
-
             }
             else{
-                return res.status(200).json({message: postsAuthor, status: 200});
-
+                return res.status(200).json({message: posts, status: 200});
             }
     }).catch(
         err => {
@@ -109,7 +107,7 @@ app.post("/api/blog-posts", jsonParser, (req, res) => {
 
     BlogPosts.post(nPost).then(
         post => {
-            return res.status(201).json({message: "Success: New post was added.", status: 201});
+            return res.status(201).json({message: "Success:" + post.title +  "was added.", status: 201});
         }).catch(
             err => {
                 return res.status(500).json({message: "There was an error with the database.", status: 500});
@@ -121,7 +119,7 @@ app.delete("/api/blog-posts/:id", (req, res) => {
     let id = req.params.id;
 
     BlogPosts.delete(id).then(
-        _ => {
+        post => {
             return res.status(200).json({message: "Blog removed.", status: 200});
         }).catch(
             err => {

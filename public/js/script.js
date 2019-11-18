@@ -63,6 +63,7 @@ $("#postBlog").on("click", (event) => {
         }
 
     });
+    console.log("Ya acabo")
 })
 
 $("#deleteBlog").on("click", (event) => {
