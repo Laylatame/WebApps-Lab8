@@ -22,9 +22,9 @@ var blogSchema = mongoose.Schema({
 
 let blog = mongoose.model('BlogPost', blogSchema);
 
-let BlogPostList = {
+let BlogPosts = {
     get : function() {
-        return BlogPost.find()
+        return blog.find()
             .then(posts => {
                 return posts;
             })
@@ -33,7 +33,7 @@ let BlogPostList = {
             });
     },
     getById : function(id) {
-        return BlogPost.findOne({id : id})
+        return blog.findOne({id : id})
             .then(post => {
                 return post;
             })
@@ -42,7 +42,7 @@ let BlogPostList = {
             });
     },
     getByAuthor : function(author) {
-        return BlogPost.find({author : author})
+        return blog.find({author : author})
             .then(posts => {
                 return posts;
             })
@@ -51,7 +51,7 @@ let BlogPostList = {
             });
     },
     post : function(newPost) {
-        return BlogPost.create(newPost)
+        return blog.create(newPost)
             .then(post => {
                 return post;
             })
@@ -60,10 +60,10 @@ let BlogPostList = {
             });
     },
     delete : function(id) {
-        return BlogPostList.getById(id)
+        return blog.getById(id)
             .then(post => {
                 if (post) {
-                    return BlogPost.findOneAndDelete({id : id})
+                    return blog.findOneAndDelete({id : id})
                         .then(deletedPost => {
                             return deletedPost;
                         })
@@ -71,7 +71,7 @@ let BlogPostList = {
                             throw Error(err);
                         });
                 } else {
-                    throw Error("404 Id not found");
+                    throw Error("404 ID was not found");
                 }
             })
             .catch(err => {
@@ -79,10 +79,10 @@ let BlogPostList = {
             });
     },
     put : function(updatedPost) {
-        return BlogPostList.getById(updatedPost.id)
+        return BlogPosts.getById(updatedPost.id)
             .then(post => {
                 if (post) {
-                    return BlogPost.findOneAndUpdate({id : post.id}, {$set : updatedPost}, {new : true})
+                    return blog.findOneAndUpdate({id : post.id}, {$set : updatedPost}, {new : true})
                         .then(newPost => {
                             return newPost;
                         })
@@ -100,4 +100,4 @@ let BlogPostList = {
 };
 
 
-module.exports = { BlogPostsList };
+module.exports = { BlogPosts };
